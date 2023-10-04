@@ -61,3 +61,257 @@ data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers)
           sd(rivers), min(rivers), max(rivers))
 data
 #8
+#a
+Power_Ranking <- c(1:25)
+Celebrity_Name <- c("Tom Cruise","Rolling Stones","Oprah Winfrey","U2","Tiger Woods","Steven Spieldberg","Howard Stern","50 Cent","Cast of the Supranos","Dan Brown","Bruce Springsteen","Donald Trump","Muhammad Ali","Paul McCartney","George Lucas","Elthon John","David Letterman","Phil Mickelson","J.K Rowling","Bradd Pitt","Peter Jackson","Dr.Phil McGrew","Jay Lenon","Celine Dion","Kobe Bryant")
+Pay <- c("67","90","225","110","90","332","301","41","52","88","55","44","55","40","233","34","40","47","75","25","39","45","32","40","31")
+powerful_Celeb <- data.frame(Power_Ranking,Celebrity_Name, Pay)
+powerful_Celeb
+#b
+Power_Ranking[19] <- 15
+Power_Ranking
+Pay[19] <- 90
+Pay
+#c
+csv_file <-"PowerRanking.csv"
+write.csv(powerful_Celeb, file = csv_file)
+powerful_CelebCSV <- read.csv("PowerRanking.csv")
+power_ranking <- powerful_CelebCSV[10:20,]
+power_ranking
+#d
+#X Power_Ranking    Celebrity_Name Pay
+# 10            10         Dan Brown  88
+# 11            11 Bruce Springsteen  55
+# 12            12      Donald Trump  44
+# 13            13      Muhammad Ali  55
+# 14            14    Paul McCartney  40
+# 15            15      George Lucas 233
+# 16            16       Elthon John  34
+# 17            17   David Letterman  40
+# 18            18    Phil Mickelson  47
+# 19            19       J.K Rowling  75
+# 20            20        Bradd Pitt  25
+
+#e The PowerRank result was change to 10 to 20 element.
+save(power_ranking, file = "Ranks.RData")
+load("Ranks.RData")
+
+#9
+#a
+library(readxl)
+hotels_vienna <- read_excel("hotels-vienna.xlsx")
+View(hotels_vienna)
+hotels_vienna
+#b
+dim(hotels_vienna) #[1]428 24
+#c 
+col <- colnames(hotels_vienna)
+col
+colnames1 <- col[c(1,6,7,8,22,24)]
+colnames1
+#[1] " country"             "neighbourhood"            "price"          "accomodation_type"
+#[6] "rating"
+
+#d
+save(hotels_vienna, file = "new.RDATA")
+new <- load("new.RDATA")
+View(new)
+
+head(hotels_vienna,6)
+
+# country city_actual rating_count center1label center2label
+#<chr>   <chr>       <chr>        <chr>        <chr>       
+ # 1 Austria Vienna      36           City centre  Donauturm   
+#2 Austria Vienna      189          City centre  Donauturm   
+#3 Austria Vienna      53           City centre  Donauturm   
+#4 Austria Vienna      55           City centre  Donauturm   
+#5 Austria Vienna      33           City centre  Donauturm   
+#6 Austria Vienna      25           City centre  Donauturm  
+
+#10
+vegetables <- list ("cabbage", "carrot", "spinach", " potato", "garlic", "corn","onion", "tomato", "eggplant", "cucumber")
+vegetables
+#a
+#[[1]]
+#[1] "cabbage"
+
+#[[2]]
+#[1] "carrot"
+
+#[[3]]
+#[1] "spinach"
+
+#[[4]]
+#[1] " potato"
+
+#[[5]]
+#[1] "garlic"
+
+#[[6]]
+#[1] "corn"
+
+#[[7]]
+#[1] "onion"
+
+#[[8]]
+#[1] "tomato"
+
+#[[9]]
+#[1] "eggplant"
+
+#[[10]]
+#[1] "cucumber"
+
+#b added 2 additional vegetable after the last vegetables in the list.
+addVegetables <- c(vegetables, "mushroom", "ginger")
+addVegetables
+#c added 4 additional vegetables after index 5
+addVegetables4 <- append(addVegetables,c("lettuce","zucchini", "radish","bell papper"),after = 5)
+addVegetables4
+num_vegetables <- length(addVegetables4)
+num_vegetables
+
+#> addVegetables <- c(vegetables, "mushroom", "ginger")
+#> addVegetables
+#[[1]]
+#[1] "cabbage"
+
+#[[2]]
+#[1] "carrot"
+
+#[[3]]
+#[1] "spinach"
+
+#[[4]]
+#[1] " potato"
+
+#[[5]]
+#[1] "garlic"
+
+#[[6]]
+#[1] "corn"
+
+#[[7]]
+#[1] "onion"
+
+#[[8]]
+#[1] "tomato"
+
+#[[9]]
+#[1] "eggplant"
+
+#[[10]]
+#[1] "cucumber"
+
+
+#[[11]]
+#[1] "mushroom"
+
+#[[12]]
+#[1] "ginger"
+
+#> addVegetables4 <- append(addVegetables,c("lettuc","zucchini", "radish","bell papper"),after = 5)
+#> addVegetables4
+#[[1]]
+#[1] "cabbage"
+
+#[[2]]
+#[1] "carrot"
+
+#[[3]]
+#[1] "spinach"
+
+#[[4]]
+#[1] " potato"
+
+#[[5]]
+#[1] "garlic"
+
+#[[6]]
+#[1] "lettuc"
+
+#[[7]]
+#[1] "zucchini"
+
+#[[8]]
+#[1] "radish"
+
+#[[9]]
+#[1] "bell papper"
+
+#[[10]]
+#[1] "corn"
+
+#[[11]]
+#[1] "onion"
+
+#[[12]]
+#[1] "tomato"
+
+#[[13]]
+#[1] "eggplant"
+
+#[[14]]
+#[1] "cucumber"
+
+#[[15]]
+#[1] "mushroom"
+
+#[[16]]
+#[1] "ginger"
+
+#> num_vegetables <- length(addVegetables4)
+# num_vegetables
+#[1] 16
+addVegetables5 <- addVegetables4[-c(5,10,15)]
+addVegetables5
+
+num_addVegetables5 <- length(addVegetables5)
+num_addVegetables5
+#d
+#> addVegetables5 <- addVegetables4[-c(5,10,15)]
+#> addVegetables5
+#[[1]]
+#[1] "cabbage"
+
+#[[2]]
+#[1] "carrot"
+
+#[[3]]
+#[1] "spinach"
+
+#[[4]]
+#[1] " potato"
+
+
+#[[5]]
+#[1] "lettuc"
+
+#[[6]]
+#[1] "zucchini"
+
+#[[7]]
+#[1] "radish"
+
+#[[8]]
+#[1] "bell papper"
+
+#[[9]]
+#[1] "onion"
+
+#[[10]]
+#[1] "tomato"
+
+#[[11]]
+#[1] "eggplant"
+
+#[[12]]
+#[1] "cucumber"
+
+#[[13]]
+#[1] "ginger"
+
+#> 
+ # > num_addVegetables5 <- length(addVegetables5)
+#> num_addVegetables5
+#[1] 13
