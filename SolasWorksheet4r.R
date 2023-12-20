@@ -3,6 +3,11 @@ shoe_size <- c(6.5,9.0,8.5,8.5,10.5,7.0,9.5,9.0,13.0,7.5,10.5,8.5,12.0,10.5,13.0
 height <- c(66.0,68.0,64.5,65.0,70.0,64.0,70.0,71.0,72.0,64.0,74.5,67.0,71.0,71.0,77.0,72.0,59.0,62.0,72.0,66.0,64.0,67.0,73.0,69.0,72.0,70.0,69.0,70.0)
 houseHold_data <- data.frame(shoe_size,height)
 houseHold_data
+library(readr)
+csv_file<-"HouseholdData.csv"
+write.csv(houseHold_data,file = csv_file)
+houseHold_data<-read.csv("HouseholdData.csv")
+
 #A IT SHOWS THE DATA OF SHOE SIZE AND HEIGHT
 #shoe_size height
 #1        6.5   66.0

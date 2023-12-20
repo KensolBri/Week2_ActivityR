@@ -110,3 +110,88 @@ barplot(count,
 legend("topright",
        legend = Gender,
        fill = c("blue", "pink"))
+
+#D
+setosa_lastsix<-tail(subset(iris, Species == "setosa"), n = 6)
+versicolor_lastsix<-tail(subset(iris, Species == "versicolor"), n = 6)
+virginica_lastsix<-tail(subset(iris, Species == "virginica"), n = 6)
+setosa_lastsix
+
+#E
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     pch = as.integer(iris$Species),
+     col = as.integer(iris$Species) + 1,
+     main = "Iris Dataset",
+     sub = "Sepal width and length",
+     xlab = "Sepal length",
+     ylab = "Sepal width",
+     cex = 1.5,
+     lwd = 1.5)
+
+as.factor(iris$Species)
+
+#7
+#A
+library(readr)
+library(readxl)
+alexa_file <- read_excel("/cloud/project/alexa_file.xlsx")
+#View(alexa_file)
+
+alexaVariation <- gsub("Black Plus", "Black Plus", alexa_file$variation)
+alexa_file$variation <- gsub("Black Show", "Black Show", alexa_file$variation)
+alexa_file$variation <- gsub("Black Spot", "Black Spot", alexa_file$variation)
+alexa_file$variation <- gsub("Black Dot", "Black Dot", alexa_file$variation)
+alexa_file$variation <- gsub("White Dot", "White Dot", alexa_file$variation)
+alexa_file$variation <- gsub("White Plus", "White Plus", alexa_file$variation)
+alexa_file$variation <- gsub("White Spot", "White Spot", alexa_file$variation)
+alexa_file$variation <- gsub("White Show", "White Show", alexa_file$variation)
+
+#B
+library(dplyr)
+
+#Attaching package: ‘dplyr’
+#
+#The following objects are masked from ‘package:stats’:
+#
+#    filter, lag
+#
+#The following objects are masked from ‘package:base’:
+#
+#    intersect, setdiff, setequal, union
+
+save(alexa_file, file = "variations.RData")
+load("variations.RData")
+alexaVariation <- alexa_file%>%count(alexa_file$variation)
+alexaVariation
+
+#C
+barplot(
+  height = alexaVariation$n,
+  names.arg = alexaVariation$`alexa_file$variation`,
+  col = "pink",
+  main = "Alexa Varations",
+  las = 2,
+  cex.names = 0.58
+)
+
+par(mfrow = c(1, 2))
+black_variants <- alexaVariation[1:5,]
+white_variants <- alexaVariation[12:16,]
+barplot(
+  height = black_variants$n,
+  names.arg = black_variants$`alexa_file$variation`,
+  main = "Black Variants",
+  col = rainbow(8),
+  xlab = 'Total Numbers',
+  ylab = 'Frequency',
+  cex.names = 0.35,
+)
+barplot(
+  height = white_variants$n,
+  names.arg = white_variants$`alexa_file$variation`,
+  main = "White Variants",
+  col = rainbow(8),
+  xlab = 'Total Numbers',
+  ylab = 'Frequency',
+  cex.names = 0.35,
+)
